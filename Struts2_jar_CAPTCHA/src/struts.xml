@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<package name="myPackage" extends="struts-default" abstract="true">
+		<result-types>
+			<result-type name="captcha" class="com.wqp.action.CAPTCHAResult"></result-type>
+		</result-types>
+		<global-results>
+			<result name="success" type="captcha">
+				<param name="width">200</param>
+				<param name="height">30</param>
+			</result>
+		</global-results>
+	</package>
+	<package name="captcha" extends="myPackage">
+		<action name="captchaAction"></action>
+	</package>
+	<package name="login" extends="struts-default" namespace="/login">
+		<action name="login" class="com.wqp.action.CaptchaAction" method="login">
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+	
+<!-- 	局部视图 -->
+<!-- 	<package name="p1" extends="struts-default"> -->
+<!-- 		<result-types> -->
+<!-- 			<result-type name="captcha" class="com.wqp.action.CAPTCHAResult"></result-type> -->
+<!-- 		</result-types> -->
+<!-- 		<action name="captchaAction"> -->
+<!-- 			<result name="success" type="captcha"> -->
+<!-- 				<param name="width">1000</param> -->
+<!-- 				<param name="height">200</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+<!-- 	</package> -->
+</struts>
